@@ -1,116 +1,138 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "ngx-arcgis-demo": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@ngx-env/builder:application",
-          "options": {
-            "outputPath": "dist/ngx-arcgis-demo",
-            "index": "src/index.html",
-            "browser": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/staticwebapp.config.json",
-              "src/favicon.ico",
-              "src/android-chrome-192x192.png",
-              "src/android-chrome-256x256.png",
-              "src/apple-touch-icon.png",
-              "src/browserconfig.xml",
-              "src/favicon-16x16.png",
-              "src/favicon-32x32.png",
-              "src/mstile-150x150.png",
-              "src/safari-pinned-tab.svg",
-              "src/site.webmanifest",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          },
-          "configurations": {
-            "production": {
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "5mb",
-                  "maximumError": "15mb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "ngx-arcgis-demo": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:service": {
+                    "skipTests": true
                 },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "20kb",
-                  "maximumError": "40kb"
+                "@schematics/angular:application": {
+                    "skipTests": true
+                },
+                "@schematics/angular:directive": {
+                    "skipTests": true
+                },
+                "@schematics/angular:class": {
+                    "skipTests": true
+                },
+                "@schematics/angular:interceptor": {
+                    "skipTests": true
+                },
+                "@schematics/angular:pipe": {
+                    "skipTests": true
+                },
+                "@schematics/angular:guard": {
+                    "skipTests": true
+                },
+                "@schematics/angular:component": {
+                    "skipTests": true,
+                    "style": "scss"
                 }
-              ],
-              "outputHashing": "all"
             },
-            "development": {
-              "optimization": false,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "fileReplacements": []
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@ngx-env/builder:application",
+                    "options": {
+                        "outputPath": "dist/ngx-arcgis-demo",
+                        "index": "src/index.html",
+                        "browser": "src/main.ts",
+                        "polyfills": [
+                            "zone.js"
+                        ],
+                        "tsConfig": "tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            "src/staticwebapp.config.json",
+                            "src/favicon.ico",
+                            "src/android-chrome-192x192.png",
+                            "src/android-chrome-256x256.png",
+                            "src/apple-touch-icon.png",
+                            "src/browserconfig.xml",
+                            "src/favicon-16x16.png",
+                            "src/favicon-32x32.png",
+                            "src/mstile-150x150.png",
+                            "src/safari-pinned-tab.svg",
+                            "src/site.webmanifest",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
+                        "scripts": []
+                    },
+                    "configurations": {
+                        "production": {
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "5mb",
+                                    "maximumError": "15mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "20kb",
+                                    "maximumError": "40kb"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "optimization": false,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "fileReplacements": []
+                        }
+                    },
+                    "defaultConfiguration": "production"
+                },
+                "serve": {
+                    "builder": "@ngx-env/builder:dev-server",
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "ngx-arcgis-demo:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "ngx-arcgis-demo:build:development"
+                        }
+                    },
+                    "defaultConfiguration": "development"
+                },
+                "extract-i18n": {
+                    "builder": "@ngx-env/builder:extract-i18n",
+                    "options": {
+                        "buildTarget": "ngx-arcgis-demo:build"
+                    }
+                },
+                "test": {
+                    "builder": "@ngx-env/builder:karma",
+                    "options": {
+                        "polyfills": [
+                            "zone.js",
+                            "zone.js/testing"
+                        ],
+                        "sourceMap": false,
+                        "tsConfig": "tsconfig.spec.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": [
+                            "src/favicon.ico",
+                            "src/assets"
+                        ],
+                        "styles": [
+                            "src/styles.scss"
+                        ],
+                        "scripts": []
+                    }
+                }
             }
-          },
-          "defaultConfiguration": "production"
-        },
-        "serve": {
-          "builder": "@ngx-env/builder:dev-server",
-          "configurations": {
-            "production": {
-              "buildTarget": "ngx-arcgis-demo:build:production"
-            },
-            "development": {
-              "buildTarget": "ngx-arcgis-demo:build:development"
-            }
-          },
-          "defaultConfiguration": "development"
-        },
-        "extract-i18n": {
-          "builder": "@ngx-env/builder:extract-i18n",
-          "options": {
-            "buildTarget": "ngx-arcgis-demo:build"
-          }
-        },
-        "test": {
-          "builder": "@ngx-env/builder:karma",
-          "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
-            "sourceMap": false,
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": [
-              "src/favicon.ico",
-              "src/assets"
-            ],
-            "styles": [
-              "src/styles.scss"
-            ],
-            "scripts": []
-          }
         }
-      }
+    },
+    "cli": {
+        "analytics": false
     }
-  },
-  "cli": {
-    "analytics": false
-  }
 }

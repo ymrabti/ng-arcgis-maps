@@ -78,12 +78,12 @@ export class FeatureListComponent implements OnInit, AfterViewInit {
     // get all the features in view from the layerView
     layerView.queryFeatures().then((results) => {
       let features: any[] = [];
-      // add to array with just the name for display and the id for selection / tracking
+      // add to array with just the namee for display and the id for selection / tracking
       results.features.forEach((feature) => {
-        features.push({ id: feature.attributes.OBJECTID, name: feature.attributes.name });
+        features.push({ id: feature.attributes.OBJECTID, ...feature.attributes });
       });
-      // sort the features by name, then update the data table
-      features.sort((a, b) => a.name.localeCompare(b.name));
+      // sort the features by namee, then update the data table
+      features.sort((a, b) => a.LIBELLE.localeCompare(b.LIBELLE));
       this.dataSource.data = features;
     });
   }

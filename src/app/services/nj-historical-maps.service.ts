@@ -41,7 +41,7 @@ export class NjHistoricalMapsService {
       url: "https://img.nj.gov/imagerywms/HistoricalMaps",
       layerType: LayerType.WMSLayer
     },
-    {
+    /* {
       type: NjHistoricalMapType.WetlandsImagery1970,
       title: "Wetlands Imagery (1970)",
       url: "https://img.nj.gov/imagerywms/Wetlands1970",
@@ -76,7 +76,7 @@ export class NjHistoricalMapsService {
       title: "Wetlands from Land Cover (2002)",
       url: "https://mapsdep.nj.gov/arcgis/rest/services/Features/Land_lu/MapServer/9",
       layerType: LayerType.FeatureLayer,
-    },
+    }, */
   ];
   constructor() { }
 

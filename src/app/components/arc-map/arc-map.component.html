@@ -1,12 +1,26 @@
 <div class="map-container" [ngClass]="getInfoPanelClass()">
-    <arcgis-map class="arcgis-defaults" itemId="85015c1ad9a344439f695f8c0442619f"
+    <arcgis-map
+        class="arcgis-defaults"
+        itemId="783552d357ea4a30a8ba66760692017f"
         (arcgisViewReadyChange)="arcgisViewReadyChange($event)">
-        <arcgis-zoom position="top-left"></arcgis-zoom>
+        <arcgis-zoom position="top-left"> </arcgis-zoom>
         <arcgis-expand position="top-right">
             <arcgis-search></arcgis-search>
         </arcgis-expand>
         <arcgis-expand position="bottom-right">
-            <arcgis-layer-list />
+            <arcgis-layer-list
+                auto-destroy="true"
+                drag-enabled="true"
+                filter-placeholder="Filter layers..."
+                heading-level="3"
+                icon="layers"
+                show-collapse-button
+                minFilterItems="3"
+                label="Layer List"
+                multiple-selection-enabled="true"
+                selection-enabled="true"
+                visibility-appearance="checkbox">
+            </arcgis-layer-list>
         </arcgis-expand>
         <arcgis-expand position="bottom-left">
             <arcgis-legend></arcgis-legend>
@@ -20,15 +34,17 @@
         <mat-tab-group preserveContent>
             <mat-tab class="tab-content" label="Places">
                 <ng-template matTabContent>
-                    <app-feature-list [featureLayerView$]="protectedLayerViewSubject.asObservable()"></app-feature-list>
+                    <app-feature-list
+                        [featureLayerView$]="protectedLayerViewSubject.asObservable()"></app-feature-list>
                 </ng-template>
             </mat-tab>
             <mat-tab class="tab-content" label="Layers">
                 <ng-template matTabContent>
-                    <app-layer-control-panel [overlayLayers$]="overlayLayersSubject.asObservable()"></app-layer-control-panel>
+                    <app-layer-control-panel
+                        [overlayLayers$]="overlayLayersSubject.asObservable()"></app-layer-control-panel>
                 </ng-template>
             </mat-tab>
-        </mat-tab-group>    
+        </mat-tab-group>
     </div>
     }
 </div>
